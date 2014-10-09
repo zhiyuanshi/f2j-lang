@@ -40,3 +40,4 @@ gem 'spring',        group: :development
 
 gem 'haml-rails'  # Templating haiku
 gem 'angularjs-rails'
+gem 'bootstrap-sass'
