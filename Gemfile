@@ -42,3 +42,4 @@ gem 'haml-rails'  # Templating haiku
 gem 'angularjs-rails'
 gem 'bootstrap-sass'
 gem 'js-routes'
+gem 'bootswatch-rails'

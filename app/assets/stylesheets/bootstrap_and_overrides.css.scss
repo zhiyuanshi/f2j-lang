@@ -1,2 +1,13 @@
+// https://github.com/maxim/bootswatch-rails
+
+// First set or import your overrides
+
+// Then load variables
+@import "bootswatch/journal/variables";
+
+// Then bootstrap itself
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+// And finally bootswatch style itself
+@import "bootswatch/journal/bootswatch";
