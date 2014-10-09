@@ -14,3 +14,8 @@
  */
 
 @import "bootstrap_and_overrides";
+
+textarea {
+  resize: none;
+  font-family: monospace;
+}

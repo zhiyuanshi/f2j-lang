@@ -26,4 +26,10 @@ auto-save-list
 tramp
 .\#*
 
+# Tern
 .tern-port
+
+# F2J
+runtime.jar
+*.sf
+*.class

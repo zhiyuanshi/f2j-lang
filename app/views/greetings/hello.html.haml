@@ -1,2 +1,27 @@
-<h1>Greetings#hello</h1>
-<p>Find me in app/views/greetings/hello.html.erb</p>
+%div(ng-controller="AppController")
+  .row
+    .col-md-2
+      %h1 F2J
+      %p Convert "Extended" System F to Java
+      %p Source at #{link_to "github.com/zhiyuanshi/f2j-lang", "http://github.com/zhiyuanshi/f2j-lang"}
+    .col-md-10
+      .row
+        .col-md-4
+          %h2 Source code
+          %p (Type or paste code here.)
+          %textarea.form-control(rows=25 ng-model="source" ng-change="finished = false; compile()")
+          {{ bar }}
+        .col-md-8
+          %h2
+            Java output
+            %span.glyphicon(ng-class="status == 'ok' ? 'text-success glyphicon-thumbs-up' : 'text-danger glyphicon-thumbs-down'")
+          %p (Here is your Java code.)
+          %textarea.form-control(rows=25 ng-model="output" ng-change="finished = false")
+      .row
+        .col-md-12
+          %h2
+            Result
+            %button.btn.btn-primary(id="run-button"
+                                    ng-class="(finished || running || status != 'ok') ? 'disabled' : ''"
+                                    ng-click="run()") {{ finished ? "Finished" : (running ? "Running..." : "Run") }}
+          %textarea.form-control(rows=8 ng-model="result")
