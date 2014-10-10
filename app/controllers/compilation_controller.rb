@@ -14,8 +14,8 @@ class CompilationController < ApplicationController
     if !params[:source].present?
       head :bad_request
     else
-      source_path = "Main.sf"
-      output_path = "Main.java"
+      source_path = "/tmp/Main.sf"
+      output_path = "/tmp/Main.java"
 
       File.open(source_path, "w") {|f| f.write(params[:source]) }
 
@@ -35,7 +35,7 @@ class CompilationController < ApplicationController
       end
 
       if File.exists?(output_path)
-        output = `cat Main.java`
+        output = `cat /tmp/Main.java`
         File.delete(output_path)
 
         render json: { :status => :ok, :message => message, :output => output }
@@ -52,8 +52,8 @@ class CompilationController < ApplicationController
     elsif suspicious?(params[:source])
       render json: { :status => :error, :result => "Code rejected." }
     else
-      source_path = "Main.java"
-      class_name  = "Main"
+      source_path = "/tmp/Main.java"
+      class_name  = "/tmp/Main"
 
       File.open(source_path, "w") {|f| f.write(params[:source]) }
 
