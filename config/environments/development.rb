@@ -34,4 +34,11 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # Problem: With Unicorn, development log wasn't streamed to stdout.
+  # Solution: Add Rails::Rack::LogTailer to the Rack stack of Unicorn
+  #
+  # http://stackoverflow.com/questions/15647191/railsracklogtailer-and-unicorn
+  config.middleware.insert_after(Rails::Rack::Logger,
+                                 Rails::Rack::LogTailer, "log/development.log")
 end
