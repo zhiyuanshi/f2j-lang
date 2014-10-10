@@ -57,7 +57,7 @@ class CompilationController < ApplicationController
 
       File.open(source_path, "w") {|f| f.write(params[:source]) }
 
-      result = `javac #{source_path} 2>&1`
+      result = `javac -cp runtime/src #{source_path} 2>&1`
 
       if File.exists?(class_name)
 
