@@ -1,9 +1,9 @@
 !!!
-%html
+%html(ng-app="F2J")
   %head
     %title System F Compiler
     = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
   %body
-    .container(ng-app="F2J")= yield
+    .container= yield
