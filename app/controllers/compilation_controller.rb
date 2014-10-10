@@ -49,6 +49,8 @@ class CompilationController < ApplicationController
   def run
     if !params[:source].present?
       head :bad_request
+    elsif suspicious?(params[:source])
+      render json: { :status => :error, :result => "Code rejected." }
     else
       source_path = "Main.java"
       class_name  = "Main"
@@ -58,7 +60,18 @@ class CompilationController < ApplicationController
       result = `javac #{source_path} 2>&1`
 
       if File.exists?(class_name)
-        result << `java #{class_name} 2>&1`
+
+        begin
+          Timeout::timeout(10) do
+            result << `java #{class_name} 2>&1`
+          end
+        rescue Timeout::Error
+          render json: {
+            :status => :error,
+            :message => "Timeout." }
+          return
+        end
+
         File.delete(class_name)
       end
 
@@ -74,6 +87,20 @@ class CompilationController < ApplicationController
 
   def killall_java
     system("killall java")
+  end
+
+  def suspicious?(source)
+    patterns = [
+      "Process",
+      "Runtime",
+      "java.io",
+      "java.lang.Unsafe",
+      "java.lang.ref",
+      "java.lang.reflect",
+      "sun.io",
+      "sun.misc.Unsafe",
+    ]
+    patterns.any? { |pat| source.include?(pat) }
   end
 
 end
