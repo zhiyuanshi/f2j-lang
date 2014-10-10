@@ -66,9 +66,7 @@ class CompilationController < ApplicationController
             result << `java #{class_name} 2>&1`
           end
         rescue Timeout::Error
-          render json: {
-            :status => :error,
-            :message => "Timeout." }
+          render json: { :status => :error, :result => "Timeout." }
           return
         end
 
