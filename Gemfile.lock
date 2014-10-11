@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/zhiyuanshi/mercurial.git
+  revision: 2bbca42e5fdd9ba59345fea74bd24de2d043c05f
+  specs:
+    mercurial (0.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -160,6 +166,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   js-routes
+  mercurial!
   ng-rails-csrf
   pg
   rack-timeout

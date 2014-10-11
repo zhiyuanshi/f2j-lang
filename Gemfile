@@ -48,3 +48,5 @@ gem 'ng-rails-csrf'
 gem 'unicorn'
 gem 'unicorn-worker-killer'
 gem 'rack-timeout'
+
+gem 'mercurial', git: 'https://github.com/zhiyuanshi/mercurial.git'
